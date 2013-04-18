@@ -11,14 +11,13 @@ class ExceptionNotifier
       url = options.delete(:url)
       http_method = options.delete(:http_method) || :post
 
-      binding.pry
       @exception = exception
       @kcontroller = options[:env]["action_controller.instance"] || MissingController.new
       @request = ActionDispatch::Request.new(options[:env])
 
       options[:body] ||= {}
       options[:body][:app_name]         = collect_app_name
-      options[:body][:current_env]      = Rails.env
+      options[:body][:current_env]      = defined?(Rails) ? Rails.env : "Unknow"
       options[:body][:language_version] = collect_language_version
       options[:body][:exception]        = collect_exception
       options[:body][:kcontroller]      = collect_controller
@@ -47,7 +46,8 @@ class ExceptionNotifier
       {
         error_class: @exception.class.name,
         message: @exception.message.inspect,
-        backtrace: @exception.backtrace
+        fbacktrace: @exception.backtrace.first,
+        backtrace: @exception.backtrace.inspect
       }
     end
 
