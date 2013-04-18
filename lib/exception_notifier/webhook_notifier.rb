@@ -47,7 +47,7 @@ class ExceptionNotifier
         error_class: @exception.class.name,
         message: @exception.message.inspect,
         fbacktrace: @exception.backtrace.first,
-        backtrace: @exception.backtrace.inspect
+        backtrace: @exception.backtrace.join("\n")
       }
     end
 
