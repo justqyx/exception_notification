@@ -1,3 +1,4 @@
+require 'pry'
 class ExceptionNotifier
   class WebhookNotifier
 
@@ -10,8 +11,9 @@ class ExceptionNotifier
       url = options.delete(:url)
       http_method = options.delete(:http_method) || :post
 
+      binding.pry
       @exception = exception
-      @kcontroller = @env["action_controller.instance"] || MissingController.new
+      @kcontroller = options[:env]["action_controller.instance"] || MissingController.new
       @request = ActionDispatch::Request.new(options[:env])
 
       options[:body] ||= {}

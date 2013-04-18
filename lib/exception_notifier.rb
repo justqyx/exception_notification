@@ -27,7 +27,7 @@ class ExceptionNotifier
       return if ignored_exception?(options[:ignore_exceptions], exception)
       selected_notifiers = options.delete(:notifiers) || notifiers
       [*selected_notifiers].each do |notifier|
-        fire_notification(notifier, exception, options)
+        fire_notification(notifier, exception, options.dup)
       end
     end
 
