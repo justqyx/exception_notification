@@ -63,7 +63,7 @@ class ExceptionNotifier
         remote_ip: @request.remote_ip,
         params: inspect_object(@request.filtered_parameters),
         rails_root: Rails.root,
-        timestamp: Time.current.inspect
+        timestamp: Time.current.strftime("%Y-%m-%d %H:%M:%S")
       }
     end
 
