@@ -1,4 +1,3 @@
-require 'pry'
 class ExceptionNotifier
   class WebhookNotifier
 
