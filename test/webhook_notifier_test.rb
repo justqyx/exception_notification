@@ -12,8 +12,6 @@ class WebhookNotifierTest < ActiveSupport::TestCase
     assert_not_nil response
     assert_equal response[:status], 200
     assert_equal response[:body][:exception][:error_class], "ZeroDivisionError"
-    assert response[:body][:exception][:message].include? "divided by 0"
-    assert response[:body][:exception][:backtrace].include? "/exception_notification/test/webhook_notifier_test.rb:48"
   end
 
   private
